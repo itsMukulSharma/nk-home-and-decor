@@ -1,31 +1,14 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #101010;
+  color: #ffffff;
+  font-family: var(--font-primary), sans-serif;
+  overflow-x: hidden;
 }
 
 .container {
+  position: relative;
   width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -51,7 +34,7 @@ body {
     position: relative;
     .color-text {
       width: 100%;
-      color: #B4822B;
+      color: #b4822b;
       position: absolute;
       top: 0;
       left: 0;
@@ -67,13 +50,15 @@ body {
     animation-timing-function: cubic-bezier(0.71, 0.22, 0.29, 0.73);
   }
   @keyframes text_color {
-    0%{
+    0% {
       width: 0%;
     }
-    50%,60%{
+    50%,
+    60% {
       width: 100%;
     }
-    90%,100%{
+    90%,
+    100% {
       width: 0%;
     }
   }
@@ -107,4 +92,247 @@ body {
       transform: translateY(-50%) rotate(-90deg);
     }
   }
+}
+
+.scroll-testimonials {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scroll-testimonials::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 43%);
+  z-index: 1;
+}
+
+.subtext {
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+// ----------------------- loader---
+
+.loader-wrapper {
+  .loader {
+    margin: -50px 0 0 -50px;
+    border-image: initial;
+    transform: rotate(0deg);
+    animation: 1.5s linear 0s infinite normal none running spin;
+    &::before {
+      position: absolute;
+      content: "";
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid #d8ab7a;
+      border-right-color: #fff;
+      -webkit-animation: spin 2.5s linear infinite;
+      -moz-animation: spin 2.5s linear infinite;
+      -o-animation: spin 2.5s linear infinite;
+      animation: spin 2.5s linear infinite;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border-radius: 50%;
+      border: 3px solid #d8ab7a;
+      border-left-color: #fff;
+      -webkit-animation: spin 2s linear infinite;
+      -moz-animation: spin 2s linear infinite;
+      -o-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  &.loaded {
+    visibility: hidden;
+    .loader {
+      top: -100%;
+    }
+    .left-section {
+      left: -100%;
+    }
+    .right-section {
+      right: -100%;
+    }
+  }
+}
+// ----------- section bottom shadow ---
+.bottom-shadow {
+  @apply after:content-[''] after:absolute after:z-[30] after:bottom-[0px] after:left-[0px] after:w-[100%] after:h-[70px] after:bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(16,16,16,1)_90%)];
+}
+.top-shadow {
+  @apply absolute z-[30] top-[0px] left-[0px] w-[100%] h-[70px] bg-[linear-gradient(0deg,rgba(0,0,0,0)_0%,rgba(16,16,16,1)_90%)];
+}
+// ----- banner view detail button
+.banner-detail-btn-after {
+  @apply after:content-[''] after:absolute after:top-[50%] after:left-[150px] after:w-[10px] after:h-[10px] after:bg-white after:rounded-full after:translate-y-[-50%];
+}
+
+.banner-detail-btn-before {
+  @apply before:content-[''] before:absolute before:top-[50%] before:left-[110px] before:w-[40px] before:h-[1.7px] before:bg-white before:translate-y-[-50%];
+}
+
+// ----- number cards before ---
+
+.number-before {
+  @apply before:content-[''] before:absolute  before:left-[23px] before:top-[23px] before:h-px before:w-[20px] before:bg-[#d8ab7a] before:transition before:duration-500 group-hover:before:bg-white;
+}
+
+.number-after {
+  @apply after:content-[''] after:absolute after:left-0 after:-bottom-[14px] after:h-[5px] after:w-full after:bg-[#212121] after:transition after:duration-500 group-hover:after:bg-white;
+}
+
+.view-btn-circle {
+  @apply before:absolute before:top-[5px] before:left-[18px] before:w-[23px] before:h-[23px] before:border before:border-white before:rounded-full before:transition-all before:duration-500 group-hover:before:border-[#D9AA7C] group-hover:before:left-[130px];
+}
+
+.view-btn-line {
+  @apply before:content-[''] before:absolute before:top-[16px] before:right-[-47px] before:h-[1px] before:w-[35px] before:bg-white before:z-[-1] before:transition-all before:duration-500 group-hover:before:bg-[#D9AA7C];
+}
+
+.view-btn-dot {
+  @apply after:content-[''] after:absolute after:top-[13px] after:right-[-53px] after:h-[6px] after:w-[6px] after:bg-white after:rounded-full after:-z-10 after:transition-all after:duration-500 group-hover:after:bg-[#D9AA7C];
+}
+
+// ------ marquee animation --
+.marque-animation {
+  animation: scroll 30s linear infinite;
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+// -------- about section -------------
+
+.about-bg {
+  @apply before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-[url('/images/about-border.png')] before:bg-size-[cover] before:bg-position-[center_center];
+}
+
+.title-bottom-line {
+  @apply before:content-[''] before:absolute before:left-0 before:right-0 before:-bottom-[30px] before:w-[75px] before:h-[2px] before:bg-[#D8AC7D] before:mx-auto;
+}
+
+.title-bottom-dot {
+  @apply after:content-[''] after:absolute after:-left-[64px] after:right-0 after:bottom-[-30px] after:w-[10px] after:h-[2px] after:bg-[#303841] after:mx-auto after:text-center;
+}
+
+.title-bottom-line-anim {
+  &::after {
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: MOVE-BG;
+  }
+  @keyframes MOVE-BG {
+    0% {
+      left: -70px;
+    }
+    100% {
+      left: 70px;
+    }
+  }
+}
+
+.dance {
+  animation: dance 2s alternate infinite;
+
+  @keyframes dance {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.float-bob2 {
+  animation-name: float-bob2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  @keyframes float-bob2 {
+    0% {
+      transform: translateY(-60px);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+    100% {
+      transform: translateY(-60px);
+    }
+  }
+}
+
+.tab-active {
+  @apply before:content-[''] before:absolute before:bottom-0 before:left-0 before:h-px before:w-[100%] before:bg-white;
+}
+
+.show-panel {
+  display: block;
+}
+.button-style {
+  @apply after:content-[''] after:absolute after:z-[1] after:right-[10px] after:top-[50%] after:w-[25px] after:h-[25px] after:border after:border-white after:rounded-full after:translate-[-50%];
+  a {
+    @apply after:content-[''] after:absolute after:z-[1] after:left-[79%] after:top-[50%] after:w-[5px] after:h-[5px] after:bg-white after:rounded-full after:translate-[-50%];
+    @apply before:content-[''] before:absolute before:z-[1] before:left-[70%] before:top-[50%] before:w-[30px] before:h-[1px] before:bg-white before:rounded-full before:translate-[-50%];
+  }
+}
+
+// ---------------------- latest work -------------
+
+.image-grad {
+  @apply before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full  before:bg-[#D7AB79] before:scale-0 before:transition-all before:duration-500 before:opacity-70 hover:before:scale-100;
+}
+
+// ----------- footer --------------
+
+.heading-line {
+  @apply after:content-[''] after:absolute after:top-[15px] after:right-0 after:h-[1px] after:w-[59%] after:bg-[#343434] after:text-right;
+}
+
+.contact-button {
+  @apply before:content-[''] before:absolute before:top-0 before:right-0 before:h-full before:w-0 before:bg-[#D9AB7A] before:-z-[1] before:transition-all before:duration-500 hover:before:left-0 hover:before:w-full;
+}
+
+// ----------- lets connect
+
+.form-label {
+  @apply block text-[14px] leading-[26px] uppercase text-[#999999] font-normal mb-[0px];
+}
+
+.form-input {
+  @apply w-full h-[55px] pl-[20px] rounded-[3px] transition duration-500 border border-[#282828] text-white bg-[#101010] outline-none;
+}
+
+.form-textarea {
+  @apply w-full p-[20px] rounded-[3px] transition duration-500 border border-[#282828] text-white bg-[#101010] outline-none;
 }

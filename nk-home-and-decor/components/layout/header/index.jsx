@@ -5,7 +5,7 @@ import { Icons } from "@/components/icons";
 
 const Header = () => {
   return (
-    <header className="w-full h-[78px] fixed top-0 left-0 z-[999] bg-black/70 transition-all duration-500">
+    <header className="w-full h-[78px] fixed top-0 left-0 z-[9999] bg-[#101010] transition-all duration-500">
       <div className="container">
         <nav className="flex justify-between items-center h-[78px]">
           <div className="animate-logo">
@@ -29,7 +29,7 @@ const Header = () => {
               </p>
             </Link>
           </div>
-          <ul className="list-none hidden md:flex items-center gap-6">
+          <ul className="list-none hidden lg:flex items-center gap-6">
             <li>
               <Link
                 href="/"
@@ -41,7 +41,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="/"
+                href="/maintenance"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
                 // ref={homeRef}
               >
@@ -50,7 +50,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="/"
+                href="/maintenance"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
                 // ref={homeRef}
               >
@@ -58,6 +58,11 @@ const Header = () => {
               </Link>
             </li>
           </ul>
+          <div className="relative flex">
+            <button type="button" className="bg-none border-0 cursor-pointer">
+              <Icons.Hamburger size={30} fill="#ffffff" />
+            </button>
+          </div>
         </nav>
       </div>
     </header>

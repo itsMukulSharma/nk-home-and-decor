@@ -9,14 +9,15 @@ const AboutUs = () => {
       id: 1,
       label: "History",
       content:
-        "Our journey began with a simple passion for transforming houses into warm, inviting homes. From humble beginnings, we have grown into a trusted name in home décor, blending tradition with modern design to create spaces that reflect personality and comfort.",
+        "Our journey began in May 2025 with a simple dream — to make every home feel warm, functional, and beautifully designed. What started as a small step into the world of hardware and plywood quickly grew into a passion for crafting modular kitchens, wardrobes, and TV units that match modern lifestyles.",
       title2: "Milestones That Shaped Us",
       image: "/images/history.jpg",
       keyPoints: [
-        "Started as a small family-run décor studio",
-        "Focused on handcrafted, timeless designs.",
-        "Expanded to offer modern, sustainable décor solutions.",
-        "Proud to have served countless happy homes across the years.",
+        "Started in May 2025 as a home-grown hardware & plywood business",
+        "Introduced custom modular kitchens, wardrobes, and TV units",
+        "Focused on strong materials, premium craftsmanship, and customer trust",
+        "Proud to have transformed homes with designs that truly connect with families",
+        "From day one, our goal has been to combine quality materials with beautiful designs — creating spaces that feel personal, organized, and built to last.",
       ],
       // progress: [
       //   {
@@ -29,39 +30,29 @@ const AboutUs = () => {
       //   },
       // ],
       content2:
-        "From our very first project to today, our story has always been about passion for design and love for detail. Every step of our journey reflects dedication to turning houses into homes filled with warmth and style.",
+        "At NK HOME AND DECOR, we believe every home tells a story. We are here to add style, comfort, and thoughtful functionality to yours.",
     },
     {
       id: 2,
       label: "Mission",
       content:
-        "Our mission is to inspire and help people create beautiful, functional, and personalized living spaces. We aim to make every home a true reflection of the people who live in it, while ensuring comfort and quality in every detail.",
-      title2: "What Drives Us Every Day",
+        "Our mission is to bring smart, durable, and stylish home solutions to every household. We aim to create furniture and interiors that don’t just look good, but also make everyday living easier. With quality plywood, premium hardware, and thoughtful craftsmanship, we turn empty spaces into functional, beautiful corners of your home.",
+      title2: "",
       image: "/images/mission.jpg",
-      keyPoints: [
-        "Deliver stylish, affordable, and high-quality décor",
-        "Support eco-friendly and sustainable design choices.",
-        "Blend functionality with aesthetics for modern living.",
-        "Provide exceptional customer service and design guidance.",
-      ],
+      keyPoints: "",
       content2:
-        "We are committed to redefining home décor by offering pieces that bring joy, comfort, and personality into every corner. Our mission is to make inspired living accessible to everyone.",
+        "We are committed to honesty, transparency, and delivering exactly what we promise — every single time.",
     },
     {
       id: 3,
       label: "Vision",
       content:
-        "We envision a world where every home tells a unique story—where décor goes beyond style to create harmony, warmth, and belonging. Our vision is to be a leading innovator in home décor, inspiring creativity and comfort worldwi",
-      title2: "The Future We Imagine",
+        "We envision NK HOME AND DECOR becoming a trusted name in home improvement, known for modern designs, reliable materials, and customer satisfaction. Our goal is to offer complete interior solutions that blend beauty, strength, and timelessness.",
+      title2: "",
       image: "/images/vision.jpg",
-      keyPoints: [
-        "Become a household name in global home décor.",
-        "Lead with innovative, trendsetting design ideas.",
-        "Promote sustainable living through responsible décor solutions.",
-        "Inspire customers to see their homes as canvases of self-expression.",
-      ],
+      keyPoints: "",
       content2:
-        "Our vision is to create timeless décor solutions that blend modern elegance with sustainable practices, ensuring that the homes of tomorrow are as beautiful as they are responsible.",
+        "As we grow, we dream of helping more families create homes that feel warm, organized, and truly theirs.",
     },
   ];
   const [tabActive, setTabActive] = useState(tabsName[0].id);
@@ -145,8 +136,9 @@ const AboutUs = () => {
                   <p className="text-[14px] lg:text-[15px] leading-[28px] text-[#999999] font-normal mb-[33px]">
                     {item?.content}
                   </p>
-                  <div className="flex gap-10 mb-[55px]">
-                    <div className="w-[70px] lg:w-[100px] h-[70px] lg:h-[100px] shrink-0">
+                  {item?.title2 && (
+                    <div className="flex gap-10 mb-[55px]">
+                      {/* <div className="w-[70px] lg:w-[100px] h-[70px] lg:h-[100px] shrink-0">
                       <Image
                         src={item?.image}
                         width={640}
@@ -154,22 +146,26 @@ const AboutUs = () => {
                         className="w-full h-full"
                         alt="image"
                       />
+                    </div> */}
+                      <div className="grow">
+                        {item?.title2 && (
+                          <h4 className="text-[16px] lg:text-[20px] leading-[28px] text-white font-medium mb-[10px]">
+                            {item?.title2}
+                          </h4>
+                        )}
+                        {item?.keyPoints &&
+                          item?.keyPoints?.map((item, index) => (
+                            <p
+                              key={index}
+                              className="relative text-[15px] leading-[28px] text-[#999999] font-normal overflow-hidden mb-2 pl-5"
+                            >
+                              <span className="block absolute left-0 top-[12px] w-[5px] h-[5px] rounded-full bg-white"></span>
+                              {item}
+                            </p>
+                          ))}
+                      </div>
                     </div>
-                    <div className="grow">
-                      <h4 className="text-[16px] lg:text-[20px] leading-[28px] text-white font-medium mb-[10px]">
-                        {item?.title2}
-                      </h4>
-                      {item?.keyPoints?.map((item, index) => (
-                        <p
-                          key={index}
-                          className="relative text-[15px] leading-[28px] text-[#999999] font-normal overflow-hidden mb-2 pl-5"
-                        >
-                          <span className="block absolute left-0 top-[12px] w-[5px] h-[5px] rounded-full bg-white"></span>
-                          {item}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
+                  )}
                   {item?.progress?.map((item, index) => (
                     <div key={index} className="relative pb-[15px] mb-[34px]">
                       <p className="text-[15px] leading-[28px] text-white font-normal">

@@ -7,36 +7,39 @@ const Footer = () => {
   const contact = [
     {
       id: 0,
-      link: "+91 70271 72380",
+      link: "+918168519429",
+      text: "+91 81685-19429",
       Icons: <Icons.Phone size={20} fill="#D7AB79" />,
     },
     {
       id: 1,
-      link: "nkdecore12@gmail.com",
+      link: "nkhomeanddecor@gmail.com",
+      text: "nkhomeanddecor@gmail.com",
       Icons: <Icons.Mail size={20} fill="#D7AB79" />,
     },
     {
       id: 2,
-      link: "GT Road, Gharonda, Haryana",
+      link: "Gharaunda, Karnal, Haryana, 132114",
+      text: "Gharaunda, Karnal, Haryana, 132114",
       Icons: <Icons.Home size={20} fill="#D7AB79" />,
     },
   ];
   const social = [
-    {
-      id: 0,
-      link: "/",
-      Icons: <Icons.Facebook size={20} fill="#ffffff" />,
-    },
+    // {
+    //   id: 0,
+    //   link: "/",
+    //   Icons: <Icons.Facebook size={20} fill="#ffffff" />,
+    // },
     {
       id: 1,
-      link: "/",
+      link: "https://www.instagram.com/nk_home_and_decor/?hl=en",
       Icons: <Icons.Instagram size={20} fill="#ffffff" />,
     },
-    {
-      id: 2,
-      link: "/",
-      Icons: <Icons.Twitter size={20} fill="#ffffff" />,
-    },
+    // {
+    //   id: 2,
+    //   link: "/",
+    //   Icons: <Icons.Twitter size={20} fill="#ffffff" />,
+    // },
   ];
   return (
     <footer className="relative z-[1] bg-[#101010] px-0">
@@ -53,7 +56,7 @@ const Footer = () => {
                     href={item?.link}
                     className="flex gap-[10px] items-start text-[14px] leading-[26px] text-[#999999] font-normal block mb-[8px]"
                   >
-                    {item?.Icons} {item?.link}
+                    {item?.Icons} {item?.text}
                   </Link>
                 </li>
               ))}
@@ -74,14 +77,14 @@ const Footer = () => {
               </Link>
             </div>
             <p className="text-[#515151] text-[15px] leading-[30px] mt-[28px] mb-[30px]">
-              Rapidiously evolve pandemic experiences and end Dramatically
-              administrate inexpensive
+              Made to Last. Designed to Impress.
             </p>
             <ul className="flex gap-[20px] items-center lg:justify-center">
               {social?.map((item, index) => (
                 <li key={index}>
                   <Link
                     href={item.link}
+                    target="_blank"
                     className="flex items-center justify-center text-[14px] text-white bg-[#282828] h-[40px] w-[40px] leading-[40px] text-center rounded-full transition-all duration-500 hover:bg-[#D9AB7A]"
                   >
                     {item?.Icons}
@@ -121,7 +124,7 @@ const Footer = () => {
       <div className="container">
         <div className="py-[30px] text-center border-t border-t-[#282828]">
           <p className="text-[15px] leading-[26px] text-[#999999] font-normal text-center">
-            © Copyright Arcke 2024. All Rights Reserved.
+            © Copyright NK Home and Decor 2025. All Rights Reserved.
           </p>
         </div>
       </div>

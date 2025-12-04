@@ -1,59 +1,92 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const WhyChooseUs = () => {
   const cardData = [
     {
       id: 0,
       title: "Modular Kitchen Solutions",
-      text: "NK offers a wide range of imported modular kitchen solutions. The inclusion of exclusive European modular kitchen designs and German precision makes it one of a kind in the market. From intelligent storage to premium finishes, each design is tailored for modern living. Designed for elegance and built for performance, NK kitchens transform cooking spaces into a true expression of style and sophistication.",
+      text: "At NK HOME AND DECOR, we create modular kitchens that blend style, smart storage, and daily comfort. Every design is customized to your space using premium plywood and hardware. Our kitchens offer durability, smooth functionality, and modern aesthetics—making cooking easier and your home more beautiful.",
     },
     {
       id: 1,
       title: "Luxury Wardrobe Solutions",
-      text: "Luxury wardrobe solutions with sophisticated designs, fine European quality, and customizable to every inch. From premium finishes to innovative storage solutions, every detail is tailored to reflect your lifestyle. Built to maximize space without compromising on style, they bring timeless luxury and practicality to your home.",
+      text: "Our wardrobes are designed to fit your lifestyle with intelligent storage, premium materials, and beautiful finishes. From sliding to hinged designs, each wardrobe is crafted for durability and smooth use. NK HOME AND DECOR ensures maximum space utilization while adding elegance and organization to your bedroom.",
     },
     {
       id: 2,
       title: "Modern TV Units",
-      text: "Elegant and sophisticated modern European TV units, customizable to all needs. Designed with a blend of style and functionality, these units bring a luxurious charm to your living space. Available in various finishes, sizes, and layouts, they perfectly complement both contemporary and classic interiors.",
+      text: "NK HOME AND DECOR creates modern TV units that enhance your living room with style and functionality. Crafted with premium plywood and hardware, our units offer organized space for gadgets and décor. Choose from floating, classic, or custom designs that add elegance and perfectly complement your interiors.",
     },
   ];
+
   const marqueText = [
-    {
-      text: ". INTERIOR DESIGN .",
-    },
-    {
-      text: ". CONSTRUCTION .",
-    },
-    {
-      text: ". FURNITURES .",
-    },
-    {
-      text: ". LUXURY HOME .",
-    },
-    {
-      text: ". ARCHITECTURE .",
-    },
-    {
-      text: ". BUILDING .",
-    },
-    {
-      text: ". INTERIOR DESIGN .",
-    },
-    {
-      text: ". CONSTRUCTION .",
-    },
-    {
-      text: ". LUXURY HOME .",
-    },
+    { text: ". NK HOME AND DECOR ." },
+    { text: ". Quality You Can Trust ." },
+    { text: ". Crafted for Modern Homes ." },
+    { text: ". Smart Designs ." },
+    { text: ". Premium Materials ." },
+    { text: ". Perfect Finish ." },
+    { text: ". Modular Kitchens ." },
+    { text: ". Designer Wardrobes ." },
+    { text: ". Modern TV Units ." },
   ];
+
+  const headingRef = useRef();
+  const sectionRef = useRef();
+  const cardRefs = useRef([]);
+
+  useGSAP(() => {
+    // Heading animation
+    gsap.from(headingRef.current, {
+      x: -120,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+        end: "top 40%",
+        scrub: 3,
+      },
+    });
+
+    // Cards animation (with delay + fade + stagger)
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: cardRefs.current,
+        start: "top 75%",
+        end: "top 30%",
+        scrub: 3,
+        // markers: true,
+      },
+    });
+
+    tl.from(cardRefs.current, {
+      opacity: 0,
+      duration: 5,
+      stagger: 1,
+      x: (i) => (i === 0 ? -250 : i === 2 ? 250 : 0),
+      y: (i) => (i === 1 ? 250 : 0),
+    });
+  }, []);
+
   return (
-    <section className="relative w-full pt-[75px] lg:pt-[140px] bg-[url('/images/Banner_2.jpg')] bg-center bg-cover">
+    <section
+      className="relative w-full pt-[75px] lg:pt-[140px] bg-[url('/images/Banner_2.jpg')] bg-center bg-cover"
+      ref={sectionRef}
+    >
       <div className="top-shadow"></div>
       <div className="absolute top-0 left-0 w-full h-full z-[20] bg-black/90"></div>
       <div className="container relative z-[40] pb-[75]">
-        <div className="relative text-center mb-[16px] lg:mb-0">
+        <div
+          className="relative text-center mb-[16px] lg:mb-0"
+          ref={headingRef}
+        >
           <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
             Our Expertise
           </h3>
@@ -61,9 +94,15 @@ const WhyChooseUs = () => {
             Designs That Inspire <span className="text-[#D7AB7C]"> Living</span>
           </h4>
         </div>
+
+        {/* Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {cardData.map((item, index) => (
-            <div key={index} className="relative overflow-hidden group">
+            <div
+              key={item.id}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className="relative overflow-hidden group"
+            >
               <h4 className="text-[18px] leading-[30px] text-[#d8ab7a] font-medium m-0 bg-[#212121] inline-block h-[45px] w-[90px] text-right pr-[15px] pt-[8px] relative z-[1] transition-all duration-500 group-hover:text-white number-before number-after">
                 0{item.id + 1}
               </h4>
@@ -85,12 +124,14 @@ const WhyChooseUs = () => {
           ))}
         </div>
       </div>
+
+      {/* Marquee */}
       <div className="relative z-[40] py-[100px] bg-[url('/images/tag-bg.jpg')] bg-center bg-cover">
         <div className="relative flex overflow-hidden">
           <div className="flex items-center justify-around shrink-[0] min-w-[87%] marque-animation">
             {marqueText.map((item, index) => (
               <div key={index} className="relative">
-                <h4 className="inline-block text-[42px] text-white font-semibold px-12 transition duration-500 hover:text-[#D8AB7A]">
+                <h4 className="inline-block text-[42px] text-white font-semibold px-12 transition duration-500 hover:text-[#D8AB7A] uppercase">
                   <span>{item.text}</span>
                 </h4>
               </div>
@@ -99,7 +140,7 @@ const WhyChooseUs = () => {
           <div className="flex items-center justify-around shrink-[0] min-w-[87%] marque-animation">
             {marqueText.map((item, index) => (
               <div key={index} className="relative">
-                <h4 className="inline-block text-[42px] text-white font-semibold px-12 transition duration-500 hover:text-[#D8AB7A]">
+                <h4 className="inline-block text-[42px] text-white font-semibold px-12 transition duration-500 hover:text-[#D8AB7A] uppercase">
                   <span>{item.text}</span>
                 </h4>
               </div>

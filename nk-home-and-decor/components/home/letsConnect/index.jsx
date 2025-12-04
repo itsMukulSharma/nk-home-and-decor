@@ -145,6 +145,17 @@ const LetsConnect = () => {
                       </p>
                     )}
                   </div>
+                  <div className="relative">
+                    <label htmlFor="date" className="form-label">
+                      Complete address*
+                    </label>
+                    <input
+                      type="date"
+                      name=""
+                      id="date"
+                      className="form-textarea"
+                    />
+                  </div>
                 </div>
                 <div className="">
                   <button

@@ -41,6 +41,23 @@ const Footer = () => {
     //   Icons: <Icons.Twitter size={20} fill="#ffffff" />,
     // },
   ];
+  const useFulLinks = [
+    {
+      id: 0,
+      text: "About",
+      link: "/",
+    },
+    {
+      id: 1,
+      text: "Products",
+      link: "/",
+    },
+    {
+      id: 2,
+      text: "Contact Us",
+      link: "/",
+    },
+  ];
   return (
     <footer className="relative z-[1] bg-[#101010] px-0">
       <div className="container py-[120px]">
@@ -95,29 +112,20 @@ const Footer = () => {
           </div>
           <div className="lg:pl-[85px]">
             <h3 className="relative text-[20px] leading-[26px] text-white font-medium relative z-[1] mb-[30px] heading-line">
-              Newsletter
+              Useful links
             </h3>
-            <div className="">
-              <label
-                htmlFor="fEmail"
-                className="block text-[14px] leading-[26px] uppercase text-[#999999] font-normal mb-[17px]"
-              >
-                Subscribe Our Newsletter
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="fEmail"
-                className="w-full h-[55px] pl-[20px] rounded-[3px] transition duration-500 border border-[#282828] text-white bg-transparent outline-none"
-                placeholder="Your E-mail"
-              />
-            </div>
-            <button
-              type="button"
-              className="text-[16px] inline-block uppercase bg-[#282828] px-[23px] py-[12px] mt-[20px] border border-[#282828] text-white transition duration-500 relative z-[1] cursor-pointer group hover:border-[#D9AB7A] contact-button"
-            >
-              Contact Us
-            </button>
+            <ul>
+              {useFulLinks?.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item.link}
+                    className="text-[14px] leading-[26px] text-[#999999] font-normal inline-block mb-[8px] transition-all duration-500 cursor-pointer hover:text-white link-bottom"
+                  >
+                    {item.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -65,14 +65,14 @@ const Testimonials = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]">
         <div className="hidden lg:block relative w-full h-[400px] lg:h-full">
           <Image
-            src="/images/review.webp"
+            src="/images/customer_review.webp"
             width={640}
             height={425}
             className="w-full h-full"
             alt="image"
           />
         </div>
-        <div className="lg:max-w-[82%] py-[75px] px-[1rem] lg:py-[120px] lg:pl-[100px]">
+        <div className="lg:max-w-[82%] py-[75px] px-[1rem] lg:py-[50px] lg:pl-[100px]">
           <div className="relative text-center mb-[16px] lg:mb-0">
             <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
               REVIEWS

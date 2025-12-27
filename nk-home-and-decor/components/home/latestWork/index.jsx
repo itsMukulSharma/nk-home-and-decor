@@ -9,13 +9,13 @@ const LatestWork = () => {
       largeImage: [
         {
           id: 0,
-          img: "/images/tvUnit.jpg",
+          img: "/images/tv_unit.jpg",
           count: 1,
           title: "Modern TV Units",
         },
       ],
       smallImage: [
-        { id: 0, img: "/images/modernKitchen.jpg", title: "Modular Kitchen" },
+        { id: 0, img: "/images/modern_kitchen.jpg", title: "Modular Kitchen" },
         { id: 1, img: "/images/livingRoom.jpg", title: "Luxury living room" },
       ],
     },
@@ -25,15 +25,15 @@ const LatestWork = () => {
       largeImage: [
         {
           id: 0,
-          img: "/images/woodBoxes.jpg",
-          count: 2,
-          title: "Wooden packaging boxes",
+          img: "/images/wardrobe.jpeg",
+          count: 2,          
+          title: "Luxury Wardrobe Solutions",
         },
         {
           id: 1,
-          img: "/images/LuxuryWardrobe.webp",
+          img: "/images/woodBoxes.jpg",
           count: 2.1,
-          title: "Luxury Wardrobe Solutions",
+          title: "Wooden packaging boxes",
         },
       ],
     },
@@ -49,7 +49,7 @@ const LatestWork = () => {
   ];
   return (
     <section className="relative z-[1] bg-[#161616] py-[75px] lg:pt-[90px] lg:pb-[90px]">
-      <div className='container relative z-[10]">'>
+      <div className='container xl-container relative z-[10]">'>
         <div className="relative text-center mb-[16px] lg:mb-0">
           <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
             WORKS

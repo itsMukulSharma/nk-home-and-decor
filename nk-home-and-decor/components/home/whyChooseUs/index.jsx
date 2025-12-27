@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
 
   return (
     <section
-      className="relative w-full pt-[75px] lg:pt-[140px] bg-[url('/images/Banner_2.jpg')] bg-center bg-cover"
+      className="relative w-full pt-[75px] lg:pt-[140px] bg-[url('/images/Banner_2.jpg')] bg-center bg-cover overflow-hidden lg:overflow-visible"
       ref={sectionRef}
     >
       <div className="top-shadow"></div>

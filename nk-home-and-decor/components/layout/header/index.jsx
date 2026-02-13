@@ -37,7 +37,7 @@ const Header = () => {
               <Link
                 href="/"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-              // ref={homeRef}
+                // ref={homeRef}
               >
                 Home
               </Link>
@@ -46,7 +46,7 @@ const Header = () => {
               <Link
                 href="/maintenance"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-              // ref={homeRef}
+                // ref={homeRef}
               >
                 About
               </Link>
@@ -55,7 +55,7 @@ const Header = () => {
               <Link
                 href="/maintenance"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-              // ref={homeRef}
+                // ref={homeRef}
               >
                 Contact
               </Link>
@@ -64,28 +64,47 @@ const Header = () => {
           <div className="relative flex">
             <button
               type="button"
-              className="bg-none border-0 cursor-pointer"
+              className="flex flex-col justify-between w-[30px] h-[20px] bg-none border-0 cursor-pointer"
               onClick={() => setIsHamMenuActive(!isHamMenuActive)}
             >
-              <Icons.Hamburger size={30} fill="#ffffff" />
+              <span className="block w-full h-[2px] bg-white rounded-[2px]"></span>
+              <span className="block w-[80%] h-[2px] bg-white rounded-[2px]"></span>
+              <span className="block w-[50%] h-[2px] bg-white rounded-[2px]"></span>
             </button>
           </div>
         </nav>
       </div>
       <div className={`sidebar-group ${isHamMenuActive ? "isActive" : ""}`}>
-        <div className="fixed top-0 w-full h-full opacity-0 invisible z-[999] bg-[#D9AB7A] overlay" onClick={() => setIsHamMenuActive(false)}></div>
+        <div
+          className="fixed top-0 w-full h-full opacity-0 invisible z-[999] bg-[#D9AB7A] overlay"
+          onClick={() => setIsHamMenuActive(false)}
+        ></div>
         <div className="fixed top-0 bottom-0 right-full w-full h-full max-w-[360px] opacity-0 invisible z-[9999] bg-[#272727] sidebar-content">
           <div className="flex justify-end py-[40px] px-[32px]">
-            <button className="w-[28px] h-[28px] p-[2px] rounded-full border-[3px] border-[#D8AB79] bg-none cursor-pointer" onClick={() => setIsHamMenuActive(false)}>
+            <button
+              className="w-[28px] h-[28px] p-[2px] rounded-full border-[3px] border-[#D8AB79] bg-none cursor-pointer"
+              onClick={() => setIsHamMenuActive(false)}
+            >
               <Icons.Close size={20} fill="#D8AB79" />
             </button>
           </div>
           <div className="px-[32px]">
-            <h2 className="text-white text-[26px] font-semibold leading-[30px] mb-[32px]">Contact Info</h2>
+            <h2 className="text-white text-[26px] font-semibold leading-[30px] mb-[32px]">
+              Contact Info
+            </h2>
             <ul className="list-none">
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]"><Icons.Location size={20} fill="#ffffff" /> Gharaunda, Karnal, Haryana, 132114</li>
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]"><Icons.Phone size={20} fill="#ffffff" />+91 8870760709</li>
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]"><Icons.Mail size={20} fill="#ffffff" />nkhomeadndecore@gmail.com</li>
+              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
+                <Icons.Location size={20} fill="#ffffff" /> Gharaunda, Karnal,
+                Haryana, 132114
+              </li>
+              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
+                <Icons.Phone size={20} fill="#ffffff" />
+                +91 8870760709
+              </li>
+              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
+                <Icons.Mail size={20} fill="#ffffff" />
+                nkhomeadndecore@gmail.com
+              </li>
             </ul>
           </div>
         </div>

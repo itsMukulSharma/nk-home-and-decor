@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
   const tabsName = [
@@ -56,9 +60,29 @@ const AboutUs = () => {
     },
   ];
   const [tabActive, setTabActive] = useState(tabsName[0].id);
+  const sectionRef = useRef();
+  const headingRef = useRef();
+
+  useGSAP(() => {
+    gsap.from(headingRef.current, {
+      x: 120,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+        end: "top 40%",
+        scrub: 3,
+      },
+    });
+  });
 
   return (
-    <section className="relative z-[1] bg-[#161616] pt-[75px] lg:pt-[140px] pb-[75px] lg:pb-[137px] about-bg">
+    <section
+      className="relative z-[1] bg-[#161616] pt-[75px] lg:pt-[140px] pb-[75px] lg:pb-[137px] about-bg"
+      ref={sectionRef}
+    >
       <div className="container relative z-[10]">
         <div className="relative text-center mb-[16px] lg:mb-0">
           <div className="absolute top-[14%] left-[0%] z-[20] dance">
@@ -77,12 +101,14 @@ const AboutUs = () => {
               alt="anim"
             />
           </div>
-          <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
-            ABOUT US
-          </h3>
-          <h4 className="relative top-[-30px] lg:top-[-90px] text-white text-[20px] leading-[35px] lg:text-[50px] lg:leading-[58px] font-semibold title-bottom-line title-bottom-dot  title-bottom-line-anim">
-            Discover NK's <span className="text-[#D7AB7C]"> Story</span>
-          </h4>
+          <div ref={headingRef}>
+            <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
+              ABOUT US
+            </h3>
+            <h4 className="relative top-[-30px] lg:top-[-90px] text-white text-[20px] leading-[35px] lg:text-[50px] lg:leading-[58px] font-semibold title-bottom-line title-bottom-dot  title-bottom-line-anim">
+              Discover NK's <span className="text-[#D7AB7C]"> Story</span>
+            </h4>
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
           <div className="relative p-5 group">

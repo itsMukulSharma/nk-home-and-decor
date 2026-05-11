@@ -1,7 +1,7 @@
 export async function triggerMail(obj) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_EMAIL_URL}/api/sentMail`,
+      `/api/sentMail`,
       {
         method: "POST",
         body: JSON.stringify(obj),

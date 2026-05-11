@@ -11,15 +11,15 @@ export async function POST(request) {
       port: 465, // Use 587 for TLS
       secure: true,
       auth: {
-        user: "rohit.ahlawat@techchefz.com",
-        pass: "tlzdetyrbjfhopul",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
     const mailOption = {
-      from: "rohit.ahlawat@techchefz.com",
-      to: "13rohitahlawat@gmail.com",
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECIPIENT,
       subject: "New customer details",
-      text: payload,
+      text: JSON.stringify(payload, null, 2),
     };
     await transporter.sendMail(mailOption);
     return NextResponse.json({ message: "Email sent", status: 200 });

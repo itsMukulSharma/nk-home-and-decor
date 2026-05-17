@@ -44,7 +44,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="/maintenance"
+                href="#about"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
                 // ref={homeRef}
               >
@@ -53,7 +53,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="/maintenance"
+                href="#contact"
                 className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
                 // ref={homeRef}
               >
@@ -103,7 +103,7 @@ const Header = () => {
               </li>
               <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
                 <Icons.Mail size={20} fill="#ffffff" />
-                nkhomeadndecore@gmail.com
+                nkhomeanddecor@gmail.com
               </li>
             </ul>
           </div>

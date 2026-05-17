@@ -6,10 +6,13 @@ import PageLoader from "../loader";
 import AboutUs from "./aboutUs";
 import BestServices from "./services";
 import LatestWork from "./latestWork";
+
 import Testimonials from "./testimonials";
 import LetsConnect from "./letsConnect";
 import WhatsAppWidget from "../whatsappWidget";
 import Process from "./process";
+
+import LivspaceCalculator from "./livspaceCalculator";
 
 const HomeContainer = () => {
   const [loaded, setLoaded] = useState(false);
@@ -28,6 +31,7 @@ const HomeContainer = () => {
       <WhyChooseUs />
       <AboutUs />
       <Process />
+      <LivspaceCalculator />
       <BestServices />
       <LatestWork />
       <Testimonials />

@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,21 +13,25 @@ const Process = () => {
       id: 0,
       title: "Concept Lookbooks & 2D Space Planning",
       text: "We fuse your favorite Pinterest and Google design inspirations with practical engineering. Our team drafts custom, highly detailed 2D layouts and floor plans to optimize cabinet clearances, sizing, and structural parameters before layout approval.",
+      img: "/images/architecture.jpg",
     },
     {
       id: 1,
       title: "Luxury Material Curation",
       text: "We guide you through hand-picking high-end custom laminates, anti-scratch acrylic finishes, and soft-close mechanisms right from our warehouse ecosystem.",
+      img: "/images/woodBox.jpg",
     },
     {
       id: 2,
       title: "On-Site Master Craftsmanship",
       text: "We deploy our trusted network of artisan carpenters straight to your site, executing millwork with precision and industrial integrity.",
+      img: "/images/livingRoom.jpg",
     },
     {
       id: 3,
       title: "Flawless Delivery Handover",
       text: "Comprehensive checks on soft-close systems, integrated profile accent lights, and seal integrity ensure your dream space is perfectly handed over.",
+      img: "/images/modern_kitchen.jpg",
     },
   ];
 
@@ -103,8 +108,13 @@ const Process = () => {
                 </p>
               </div>
               <div className="flex items-center justify-end">
-                <div className="w-[40px] h-[40px] rounded-full border border-[#282828] flex items-center justify-center transition-all duration-500 group-hover:bg-[#D7AB7C] group-hover:border-[#D7AB7C]">
-                  <Icons.Check size={18} className="text-[#D7AB7C] group-hover:text-[#101010]" />
+                <div className="w-[60px] h-[60px] rounded-full border border-[#282828] flex items-center justify-center transition-all duration-500 group-hover:border-[#D7AB7C] overflow-hidden relative">
+                   <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      className="object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                    />
                 </div>
               </div>
             </div>

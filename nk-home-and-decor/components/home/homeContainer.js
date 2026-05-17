@@ -9,6 +9,7 @@ import LatestWork from "./latestWork";
 import Testimonials from "./testimonials";
 import LetsConnect from "./letsConnect";
 import WhatsAppWidget from "../whatsappWidget";
+import Process from "./process";
 
 const HomeContainer = () => {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,7 @@ const HomeContainer = () => {
       <LandingBanner />
       <WhyChooseUs />
       <AboutUs />
+      <Process />
       <BestServices />
       <LatestWork />
       <Testimonials />

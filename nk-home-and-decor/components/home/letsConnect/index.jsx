@@ -40,7 +40,7 @@ const LetsConnect = () => {
           </h4>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-[40px]">
-          <div className="col-span-4">
+          <div className="lg:col-span-4">
             <Formik>
               <Form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
@@ -168,7 +168,7 @@ const LetsConnect = () => {
               </Form>
             </Formik>
           </div>
-          <div className="col-span-3">
+          <div className="lg:col-span-3">
             <Image
               src="/images/contact.png"
               width={1536}

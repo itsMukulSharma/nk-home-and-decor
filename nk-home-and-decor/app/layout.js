@@ -1,5 +1,5 @@
 import { Montserrat } from "@/libs/fonts";
-import "./globals.css";
+import "./global.scss";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 

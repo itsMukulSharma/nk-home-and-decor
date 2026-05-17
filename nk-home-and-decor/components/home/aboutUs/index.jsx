@@ -80,7 +80,7 @@ const AboutUs = () => {
 
   return (
     <section
-      className="relative z-[1] bg-[#161616] pt-[75px] lg:pt-[140px] pb-[75px] lg:pb-[137px] about-bg"
+      className="relative z-[1] bg-[#161616] pt-[75px] lg:pt-[140px] pb-[75px] lg:pb-[137px] overflow-hidden lg:overflow-visible about-bg"
       ref={sectionRef}
     >
       <div className="container relative z-[10]">

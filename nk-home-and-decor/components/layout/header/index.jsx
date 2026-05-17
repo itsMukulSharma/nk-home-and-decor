@@ -102,6 +102,16 @@ const Header = () => {
                 +91 8870760709
               </li>
               <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
+                <Icons.WhatsApp size={20} fill="#ffffff" />
+                <Link
+                  href="https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor..."
+                  target="_blank"
+                  className="hover:text-[#D9AB7A] transition-colors"
+                >
+                  +91 81685-19429
+                </Link>
+              </li>
+              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
                 <Icons.Mail size={20} fill="#ffffff" />
                 nkhomeanddecor@gmail.com
               </li>

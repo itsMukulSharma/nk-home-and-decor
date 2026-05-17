@@ -8,6 +8,7 @@ import BestServices from "./services";
 import LatestWork from "./latestWork";
 import Testimonials from "./testimonials";
 import LetsConnect from "./letsConnect";
+import WhatsAppWidget from "../whatsappWidget";
 
 const HomeContainer = () => {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +30,7 @@ const HomeContainer = () => {
       <LatestWork />
       <Testimonials />
       <LetsConnect />
+      <WhatsAppWidget />
     </>
   );
 };

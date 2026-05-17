@@ -35,11 +35,11 @@ const Footer = () => {
       link: "https://www.instagram.com/nk_home_and_decor/?hl=en",
       Icons: <Icons.Instagram size={20} fill="#ffffff" />,
     },
-    // {
-    //   id: 2,
-    //   link: "/",
-    //   Icons: <Icons.Twitter size={20} fill="#ffffff" />,
-    // },
+    {
+      id: 2,
+      link: "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...",
+      Icons: <Icons.WhatsApp size={20} fill="#ffffff" />,
+    },
   ];
   const useFulLinks = [
     {

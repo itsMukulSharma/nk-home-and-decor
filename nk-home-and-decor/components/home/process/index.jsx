@@ -7,33 +7,45 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Process = () => {
-  const processSteps = [
+const Process = ({ data }) => {
+  const processSteps = data?.steps?.length > 0 ? data.steps.map((s, i) => ({
+    id: i,
+    title: s.title,
+    text: s.description,
+    img: s.image || null,
+    features: s.features || []
+  })) : [
     {
       id: 0,
       title: "Concept Lookbooks & 2D Space Planning",
       text: "We fuse your favorite Pinterest and Google design inspirations with practical engineering. Our team drafts custom, highly detailed 2D layouts and floor plans to optimize cabinet clearances, sizing, and structural parameters before layout approval.",
       img: "/images/architecture.jpg",
+      features: []
     },
     {
       id: 1,
       title: "Luxury Material Curation",
       text: "We guide you through hand-picking high-end custom laminates, anti-scratch acrylic finishes, and soft-close mechanisms right from our warehouse ecosystem.",
       img: "/images/woodBox.jpg",
+      features: []
     },
     {
       id: 2,
       title: "On-Site Master Craftsmanship",
       text: "We deploy our trusted network of artisan carpenters straight to your site, executing millwork with precision and industrial integrity.",
       img: "/images/livingRoom.jpg",
+      features: []
     },
     {
       id: 3,
       title: "Flawless Delivery Handover",
       text: "Comprehensive checks on soft-close systems, integrated profile accent lights, and seal integrity ensure your dream space is perfectly handed over.",
       img: "/images/modern_kitchen.jpg",
+      features: []
     },
   ];
+
+  const title = data?.title || <>Pinterest-to-Reality <span className="text-[#D7AB7C]"> + 2D Design</span></>;
 
   const sectionRef = useRef();
   const headingRef = useRef();
@@ -85,7 +97,7 @@ const Process = () => {
             Our Process
           </h3>
           <h4 className="relative top-[-30px] lg:top-[-90px] text-white text-[20px] leading-[35px] lg:text-[50px] lg:leading-[58px] font-semibold title-bottom-line title-bottom-dot title-bottom-line-anim">
-            Pinterest-to-Reality <span className="text-[#D7AB7C]"> + 2D Design</span>
+            {title}
           </h4>
         </div>
 
@@ -101,6 +113,19 @@ const Process = () => {
                   <span className="text-[#D7AB78]">Process 0{item.id + 1}. </span>
                   {item.title}
                 </h4>
+                {item.features?.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {item.features.map((feature, fIdx) => {
+                      const IconComponent = Icons[feature.icon] || Icons.Check;
+                      return (
+                        <div key={fIdx} className="flex items-center gap-2 bg-[#1a1a1a] px-3 py-1.5 rounded-full border border-[#282828]">
+                          <IconComponent className="text-[#D7AB78] w-4 h-4" />
+                          <span className="text-[12px] text-[#999999]">{feature.text}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
               <div className="relative z-[10]">
                 <p className="text-[#999999] text-[15px] lg:text-[16px] leading-[28px] font-normal">
@@ -109,12 +134,12 @@ const Process = () => {
               </div>
               <div className="flex items-center justify-end">
                 <div className="w-[60px] h-[60px] rounded-full border border-[#282828] flex items-center justify-center transition-all duration-500 group-hover:border-[#D7AB7C] overflow-hidden relative">
-                   <Image
+                   {item.img && <Image
                       src={item.img}
                       alt={item.title}
                       fill
                       className="object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                    />
+                    />}
                 </div>
               </div>
             </div>

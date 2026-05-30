@@ -5,9 +5,10 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Icons } from "@/components/icons";
+import { urlFor } from "@/libs/sanity";
 
-const Testimonials = () => {
-  const customerReviews = [
+const Testimonials = ({ data }) => {
+  const customerReviews = data?.length > 0 ? data : [
     {
       id: 0,
       review:
@@ -59,7 +60,7 @@ const Testimonials = () => {
         });
       });
     }
-  }, []);
+  }, [customerReviews]);
   return (
     <section className="relative bg-[#0F0F0F]">
       <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]">
@@ -99,47 +100,59 @@ const Testimonials = () => {
                   );
               }}
             >
-              {customerReviews?.map((item, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="bg-[#1E1E1E] pt-[30px] pr-[40px] pb-[50px] pl-[40px]"
-                >
-                  <h4 className="text-[12px] leading-[25px] lg:text-[16px] lg:leading-[30px] text-[#999999] font-normal italic mb-[16px]">
-                    “{item?.review}”
-                  </h4>
-                  <span className="inline-block w-[1px] h-[70px] bg-[#D7AB79] mb-[16px]"></span>
-                  <div className="relative flex items-center gap-[16px]">
-                    <div className="w-[65px] h-[65px] shrink-0 rounded-full overflow-hidden">
-                      <Image
-                        src="/images/apartment.jpg"
-                        width={640}
-                        height={425}
-                        className="w-full h-full"
-                        alt="image"
-                      />
+              {customerReviews?.map((item, index) => {
+                const photoUrl = item.photo ? urlFor(item.photo).url() : "/images/apartment.jpg";
+                return (
+                  <SwiperSlide
+                    key={index}
+                    className="bg-[#1E1E1E] pt-[30px] pr-[40px] pb-[50px] pl-[40px]"
+                  >
+                    <h4 className="text-[12px] leading-[25px] lg:text-[16px] lg:leading-[30px] text-[#999999] font-normal italic mb-[16px]">
+                      “{item?.review}”
+                    </h4>
+                    <span className="inline-block w-[1px] h-[70px] bg-[#D7AB79] mb-[16px]"></span>
+                    <div className="relative flex items-center gap-[16px]">
+                      <div className="w-[65px] h-[65px] shrink-0 rounded-full overflow-hidden">
+                        <Image
+                          src={photoUrl}
+                          width={640}
+                          height={425}
+                          className="w-full h-full object-cover"
+                          alt="image"
+                        />
+                      </div>
+                      <div>
+                        <h5 className="text-[18px] leading-[26px] text-white font-medium mb-[4px]">
+                          {item?.customerName || item?.name}
+                        </h5>
+                        <div className="flex text-[13px] leading-[26px] text-[#d8ab7a] font-normal gap-1">
+                          {Array.from({ length: 5 }, (_, i) => {
+                            const starValue = i + 1;
+                            const rating = item.rating || 5;
+                            
+                            if (rating >= starValue) {
+                              return <Icons.Star size={25} key={i} fill="#D7AB79" />;
+                            } else if (rating > i && rating < starValue) {
+                              return <Icons.StarHalf size={25} key={i} fill="#D7AB79" />;
+                            } else {
+                              return <Icons.Star size={25} key={i} fill="transparent" stroke="#D7AB79" strokeWidth="2" />;
+                            }
+                          })}
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 right-0 rotate-180">
+                        <Icons.Quote size={50} fill="#D7AB79" />
+                      </div>
                     </div>
-                    <div>
-                      <h5 className="text-[18px] leading-[26px] text-white font-medium mb-[4px]">
-                        {item?.name}
-                      </h5>
-                      <p className="flex text-[13px] leading-[26px] text-[#d8ab7a] font-normal">
-                        {Array.from({ length: item.rating }, (_, i) => (
-                          <Icons.Star size={25} key={i} fill="#D7AB79" />
-                        ))}
-                      </p>
-                    </div>
-                    <div className="absolute bottom-0 right-0 rotate-180">
-                      <Icons.Quote size={50} fill="#D7AB79" />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
           <div className="flex justify-start gap-3 mt-[28px]">
-            {customerReviews?.map((item) => (
+            {customerReviews?.map((item, i) => (
               <button
-                key={item?.id}
+                key={i}
                 className="custom-bullet w-[8px] h-[8px] bg-[#1E1E1E]"
               ></button>
             ))}

@@ -5,8 +5,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const WhyChooseUs = () => {
-  const cardData = [
+const WhyChooseUs = ({ data }) => {
+  const cardData = data?.features?.length > 0 ? data.features.map((f, i) => ({
+    id: i,
+    title: f.title,
+    text: f.description
+  })) : [
     {
       id: 0,
       title: "Modular Kitchen Solutions",
@@ -23,6 +27,9 @@ const WhyChooseUs = () => {
       text: "NK HOME AND DECOR creates modern TV units that enhance your living room with style and functionality. Crafted with premium plywood and hardware, our units offer organized space for gadgets and décor. Choose from floating, classic, or custom designs that add elegance and perfectly complement your interiors.",
     },
   ];
+
+  const title = data?.title || <>Designs That Inspire <span className="text-[#D7AB7C]"> Living</span></>;
+  const subtitle = data?.subtitle || "Our Expertise";
 
   const marqueText = [
     { text: ". NK HOME AND DECOR ." },
@@ -82,16 +89,16 @@ const WhyChooseUs = () => {
     >
       <div className="top-shadow"></div>
       <div className="absolute top-0 left-0 w-full h-full z-[20] bg-black/90"></div>
-      <div className="container relative z-[40] pb-[75]">
+      <div className="container relative z-[40] pb-[75px]">
         <div
           className="relative text-center mb-[16px] lg:mb-0"
           ref={headingRef}
         >
           <h3 className="text-white text-[32px] lg:text-[130px] leading-[100%] font-bold uppercase opacity-[0.040]">
-            Our Expertise
+            {subtitle}
           </h3>
           <h4 className="relative top-[-30px] lg:top-[-90px] text-white text-[20px] leading-[35px] lg:text-[50px] lg:leading-[58px] font-semibold uppercase">
-            Designs That Inspire <span className="text-[#D7AB7C]"> Living</span>
+            {title}
           </h4>
         </div>
 

@@ -3,12 +3,18 @@ import React, { useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { urlFor } from "@/libs/sanity";
 gsap.registerPlugin(ScrollTrigger);
 
-const LandingBanner = () => {
+const LandingBanner = ({ data }) => {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
   const listRef = useRef(null);
+
+  const title = data?.title || "Build your vision creating reality new design";
+  const subtitle = data?.subtitle || "Building in Haryana, India";
+  const bgUrl = data?.backgroundImage ? urlFor(data.backgroundImage).url() : "/images/banner_video.mp4";
+  const ctaText = data?.ctaText || "View Details";
 
   return (
     <section
@@ -16,16 +22,23 @@ const LandingBanner = () => {
       ref={containerRef}
     >
       <div className="absolute top-0 left-0 w-full h-full z-[10]">
-        <video
-          className="w-full h-full object-cover"
-          id="my-video"
-          muted
-          loop
-          autoPlay
-          playsInline
-        >
-          <source src="/images/banner_video.mp4" type="video/mp4" />
-        </video>
+        {bgUrl.endsWith('.mp4') ? (
+          <video
+            className="w-full h-full object-cover"
+            id="my-video"
+            muted
+            loop
+            autoPlay
+            playsInline
+          >
+            <source src={bgUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <div 
+            className="w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${bgUrl})` }}
+          />
+        )}
       </div>
       <div className="absolute top-0 left-0 w-full h-full z-[20] bg-black/60"></div>
       <div
@@ -40,19 +53,18 @@ const LandingBanner = () => {
           <span className="absolute block top-[-25px] right-[-10px] w-[1px] h-[107%] bg-white/50"></span>
           <div>
             <h2 className="text-[#d8ab7a] text-[12px] lg:text-[16px] leading-[24px] font-normal mb-[16px] lg:mb-[24px] uppercase">
-              Building in Haryana, India
+              {subtitle}
             </h2>
             <p className="w-[1px] h-[80px] bg-white/50 mb-[8px] lg:mb-0"></p>
             <p className="text-[#ffffff] text-[22px] leading-[35px] lg:text-[35px] lg:leading-[50px] font-semibold mb-[24px] capitalize mb-[15px] lg:mb-[40px]">
-              Build your <span className="text-[#d8ab7a]"> vision </span>
-              creating reality new design
+              {title}
             </p>
             <div className="relative after:content-[''] after:absolute after:top-[50%] after:left-[200px] after:w-[30px] after:h-[30px] after:border after:border-white after:rounded-full after:translate-y-[-50%]">
               <button
                 type="button"
                 className="relative inline-block text-[#ffffff] text-[16px] leading-[32px] font-medium bg-none border-0 cursor-pointer banner-detail-btn-after banner-detail-btn-before transition-[0.5s] hover:text-[#D7AB79]"
               >
-                View Details
+                {ctaText}
               </button>
             </div>
           </div>

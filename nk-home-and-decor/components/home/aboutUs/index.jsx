@@ -7,13 +7,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutUs = () => {
+const AboutUs = ({ data }) => {
   const tabsName = [
     {
       id: 1,
       label: "History",
-      content:
-        "Our journey began in May 2025 with a simple dream — to make every home feel warm, functional, and beautifully designed. What started as a small step into the world of hardware and plywood quickly grew into a passion for crafting modular kitchens, wardrobes, and TV units that match modern lifestyles.",
+      content: data?.description || "Our journey began in May 2025 with a simple dream — to make every home feel warm, functional, and beautifully designed. What started as a small step into the world of hardware and plywood quickly grew into a passion for crafting modular kitchens, wardrobes, and TV units that match modern lifestyles.",
       title2: "Milestones That Shaped Us",
       image: "/images/history.jpg",
       keyPoints: [
@@ -23,40 +22,25 @@ const AboutUs = () => {
         "Proud to have transformed homes with designs that truly connect with families",
         "From day one, our goal has been to combine quality materials with beautiful designs — creating spaces that feel personal, organized, and built to last.",
       ],
-      // progress: [
-      //   {
-      //     percentage: "80%",
-      //     text: "Architecture",
-      //   },
-      //   {
-      //     percentage: "70%",
-      //     text: "Interior Design",
-      //   },
-      // ],
-      content2:
-        "At NK HOME AND DECOR, we believe every home tells a story. We are here to add style, comfort, and thoughtful functionality to yours.",
+      content2: "At NK HOME AND DECOR, we believe every home tells a story. We are here to add style, comfort, and thoughtful functionality to yours.",
     },
     {
       id: 2,
       label: "Mission",
-      content:
-        "Our mission is to bring smart, durable, and stylish home solutions to every household. We aim to create furniture and interiors that don’t just look good, but also make everyday living easier. With quality plywood, premium hardware, and thoughtful craftsmanship, we turn empty spaces into functional, beautiful corners of your home.",
+      content: data?.story || "Our mission is to bring smart, durable, and stylish home solutions to every household. We aim to create furniture and interiors that don’t just look good, but also make everyday living easier. With quality plywood, premium hardware, and thoughtful craftsmanship, we turn empty spaces into functional, beautiful corners of your home.",
       title2: "",
       image: "/images/mission.jpg",
       keyPoints: "",
-      content2:
-        "We are committed to honesty, transparency, and delivering exactly what we promise — every single time.",
+      content2: "We are committed to honesty, transparency, and delivering exactly what we promise — every single time.",
     },
     {
       id: 3,
       label: "Vision",
-      content:
-        "We envision NK HOME AND DECOR becoming a trusted name in home improvement, known for modern designs, reliable materials, and customer satisfaction. Our goal is to offer complete interior solutions that blend beauty, strength, and timelessness.",
+      content: "We envision NK HOME AND DECOR becoming a trusted name in home improvement, known for modern designs, reliable materials, and customer satisfaction. Our goal is to offer complete interior solutions that blend beauty, strength, and timelessness.",
       title2: "",
       image: "/images/vision.jpg",
       keyPoints: "",
-      content2:
-        "As we grow, we dream of helping more families create homes that feel warm, organized, and truly theirs.",
+      content2: "As we grow, we dream of helping more families create homes that feel warm, organized, and truly theirs.",
     },
   ];
   const [tabActive, setTabActive] = useState(tabsName[0].id);
@@ -107,7 +91,7 @@ const AboutUs = () => {
               ABOUT US
             </h3>
             <h4 className="relative top-[-30px] lg:top-[-90px] text-white text-[20px] leading-[35px] lg:text-[50px] lg:leading-[58px] font-semibold title-bottom-line title-bottom-dot  title-bottom-line-anim">
-              Discover NK's <span className="text-[#D7AB7C]"> Story</span>
+              {data?.title || <>Discover NK's <span className="text-[#D7AB7C]"> Story</span></>}
             </h4>
           </div>
         </div>
@@ -165,15 +149,6 @@ const AboutUs = () => {
                   </p>
                   {item?.title2 && (
                     <div className="flex gap-10 mb-[55px]">
-                      {/* <div className="w-[70px] lg:w-[100px] h-[70px] lg:h-[100px] shrink-0">
-                      <Image
-                        src={item?.image}
-                        width={640}
-                        height={360}
-                        className="w-full h-full"
-                        alt="image"
-                      />
-                    </div> */}
                       <div className="grow">
                         {item?.title2 && (
                           <h4 className="text-[16px] lg:text-[20px] leading-[28px] text-white font-medium mb-[10px]">
@@ -181,30 +156,30 @@ const AboutUs = () => {
                           </h4>
                         )}
                         {item?.keyPoints &&
-                          item?.keyPoints?.map((item, index) => (
+                          item?.keyPoints?.map((kp, index) => (
                             <p
                               key={index}
                               className="relative text-[15px] leading-[28px] text-[#999999] font-normal overflow-hidden mb-2 pl-5"
                             >
                               <span className="block absolute left-0 top-[12px] w-[5px] h-[5px] rounded-full bg-white"></span>
-                              {item}
+                              {kp}
                             </p>
                           ))}
                       </div>
                     </div>
                   )}
-                  {item?.progress?.map((item, index) => (
+                  {item?.progress?.map((prog, index) => (
                     <div key={index} className="relative pb-[15px] mb-[34px]">
                       <p className="text-[15px] leading-[28px] text-white font-normal">
-                        {item?.text}
+                        {prog?.text}
                       </p>
                       <div className="absolute bottom-0 left-0 w-[100%] h-[3px] rounded-[5px] bg-[#2E2E2E]">
                         <div
                           className={`absolute top-0 left-0 flex justify-end h-[3px] bg-white`}
-                          style={{ width: item?.percentage }}
+                          style={{ width: prog?.percentage }}
                         >
                           <p className="text-white text-[16px] leading-[28px] font-normal mt-[-37px]">
-                            {item?.percentage}
+                            {prog?.percentage}
                           </p>
                         </div>
                       </div>

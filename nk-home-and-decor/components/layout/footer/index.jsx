@@ -3,44 +3,43 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ data }) => {
   const contact = [
     {
       id: 0,
-      link: "+918168519429",
-      text: "+91 81685-19429",
+      link: data?.phone ? `tel:${data.phone}` : "tel:+918168519429",
+      text: data?.phone || "+91 81685-19429",
       Icons: <Icons.Phone size={20} fill="#D7AB79" />,
     },
     {
       id: 1,
-      link: "nkhomeanddecor@gmail.com",
-      text: "nkhomeanddecor@gmail.com",
+      link: data?.email ? `mailto:${data.email}` : "mailto:nkhomeanddecor@gmail.com",
+      text: data?.email || "nkhomeanddecor@gmail.com",
       Icons: <Icons.Mail size={20} fill="#D7AB79" />,
     },
     {
       id: 2,
-      link: "Gharaunda, Karnal, Haryana, 132114",
-      text: "Gharaunda, Karnal, Haryana, 132114",
+      link: "#",
+      text: data?.address || "Gharaunda, Karnal, Haryana, 132114",
       Icons: <Icons.Home size={20} fill="#D7AB79" />,
     },
   ];
+
+  const socialLinks = data?.socialLinks || [];
+  
   const social = [
-    // {
-    //   id: 0,
-    //   link: "/",
-    //   Icons: <Icons.Facebook size={20} fill="#ffffff" />,
-    // },
     {
       id: 1,
-      link: "https://www.instagram.com/nk_home_and_decor/?hl=en",
+      link: socialLinks.find(s => s.platform.toLowerCase() === 'instagram')?.url || "https://www.instagram.com/nk_home_and_decor/?hl=en",
       Icons: <Icons.Instagram size={20} fill="#ffffff" />,
     },
     {
       id: 2,
-      link: "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...",
+      link: socialLinks.find(s => s.platform.toLowerCase() === 'whatsapp')?.url || "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...",
       Icons: <Icons.WhatsApp size={20} fill="#ffffff" />,
     },
   ];
+
   const useFulLinks = [
     {
       id: 0,
@@ -132,7 +131,7 @@ const Footer = () => {
       <div className="container">
         <div className="py-[30px] text-center border-t border-t-[#282828]">
           <p className="text-[15px] leading-[26px] text-[#999999] font-normal text-center">
-            © Copyright NK Home and Decor 2025. All Rights Reserved.
+            © Copyright NK Home and Decor {new Date().getFullYear()}. All Rights Reserved.
           </p>
         </div>
       </div>

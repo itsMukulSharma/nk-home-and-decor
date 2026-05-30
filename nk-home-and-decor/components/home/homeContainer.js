@@ -14,7 +14,7 @@ import Process from "./process";
 
 import LivspaceCalculator from "./livspaceCalculator";
 
-const HomeContainer = () => {
+const HomeContainer = ({ sanityData = {} }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,15 +27,15 @@ const HomeContainer = () => {
   return (
     <>
       <PageLoader loaded={loaded} />
-      <LandingBanner />
-      <WhyChooseUs />
-      <AboutUs />
-      <Process />
-      <LivspaceCalculator />
-      <BestServices />
-      <LatestWork />
-      <Testimonials />
-      <LetsConnect />
+      <LandingBanner data={sanityData.hero} />
+      <WhyChooseUs data={sanityData.whyChooseUs} />
+      <AboutUs data={sanityData.about} />
+      <Process data={sanityData.process} />
+      <LivspaceCalculator data={sanityData.livspaceCalculator} />
+      <BestServices data={sanityData.services} />
+      <LatestWork data={sanityData.gallery} />
+      <Testimonials data={sanityData.testimonials} />
+      <LetsConnect data={sanityData.contact} />
       <WhatsAppWidget />
     </>
   );

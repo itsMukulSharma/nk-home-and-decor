@@ -9,8 +9,8 @@ const Header = ({ contact, settings }) => {
 
   const navLinks = settings?.navLinks || [
     { label: "Home", url: "/" },
-    { label: "About", url: "#about" },
-    { label: "Contact", url: "#contact" },
+    { label: "About", url: "/aboutus" },
+    { label: "Contact", url: "/#contact" },
   ];
 
   const logoText = settings?.logoText || "HOME AND DECOR";

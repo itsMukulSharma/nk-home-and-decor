@@ -113,7 +113,7 @@ const AboutUs = ({ data }) => {
             </div>
             <div className="w-[211px] absolute bottom-[-28px] left-[50%] flex justify-center translate-x-[-50%] button-style">
               <Link
-                href="/"
+                href="/aboutus"
                 className="relative z-[1] block text-[16px] leading-[32px] text-white font-medium text-center bg-[#161616] py-[15px] pr-[90px] pl-[45px] rounded-[30px] transition-all duration-500 group-hover:text-[#D7AB7C]"
               >
                 About Us

@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const WhyChooseUs = ({ data }) => {
@@ -120,12 +121,12 @@ const WhyChooseUs = ({ data }) => {
                 {item.text}
               </p>
               <div className="relative z-[1] transition-all duration-500 overflow-hidden view-btn-circle">
-                <button
-                  type="button"
+                <Link
+                  href="/maintenance"
                   className="inline-block relative z-[1] text-[15px] leading-[32px] text-white font-normal transition-all duration-500 ml-[-103px] group-hover:text-[#D9AA7C] group-hover:ml-0 hover:cursor-pointer view-btn-line view-btn-dot"
                 >
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           ))}

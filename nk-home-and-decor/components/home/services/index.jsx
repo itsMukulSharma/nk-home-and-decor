@@ -2,6 +2,7 @@ import { Icons } from "@/components/icons";
 import Image from "next/image";
 import React from "react";
 import { urlFor } from "@/libs/sanity";
+import Link from "next/link";
 
 const BestServices = ({ data }) => {
   const serviceData = data?.length > 0 ? data : [
@@ -98,12 +99,12 @@ const BestServices = ({ data }) => {
                 </ul>
               </div>
               <div className="flex items-center justify-end">
-                <button
-                  type="button"
+                <Link
+                  href="/maintenance"
                   className="inline-block text-[16px] leading-[30px] text-white font-medium border-0 bg-transparent transition duration-500 cursor-pointer hover:text-[#D7AB79]"
                 >
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           );

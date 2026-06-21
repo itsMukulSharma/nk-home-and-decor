@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { urlFor } from "@/libs/sanity";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const LandingBanner = ({ data }) => {
@@ -60,12 +61,12 @@ const LandingBanner = ({ data }) => {
               {title}
             </p>
             <div className="relative after:content-[''] after:absolute after:top-[50%] after:left-[200px] after:w-[30px] after:h-[30px] after:border after:border-white after:rounded-full after:translate-y-[-50%]">
-              <button
-                type="button"
+              <Link
+                href="/maintenance"
                 className="relative inline-block text-[#ffffff] text-[16px] leading-[32px] font-medium bg-none border-0 cursor-pointer banner-detail-btn-after banner-detail-btn-before transition-[0.5s] hover:text-[#D7AB79]"
               >
                 {ctaText}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

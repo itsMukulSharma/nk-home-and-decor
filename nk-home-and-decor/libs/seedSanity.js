@@ -59,9 +59,9 @@ const seedData = async () => {
     await client.createOrReplace({
       _id: 'about-singleton',
       _type: 'about',
-      title: "Discover NK's Story",
-      description: 'Our journey began in May 2025 with a simple dream — to make every home feel warm, functional, and beautifully designed. What started as a small step into the world of hardware and plywood quickly grew into a passion for crafting modular kitchens, wardrobes, and TV units that match modern lifestyles.',
-      story: 'Our mission is to bring smart, durable, and stylish home solutions to every household. We aim to create furniture and interiors that don’t just look good, but also make everyday living easier.',
+      title: "We don't just build furniture—we craft the heart of your home.",
+      description: "At NK Home and Decor, our work is deeply personal. Born from an appreciation for quality wood, premium hardware, and smart layout planning, we bring custom modular kitchens, wardrobe solutions, and TV panels to life across Haryana. We believe your home shouldn't look like an impersonal catalog; it should breathe, function beautifully, and stand the test of time.",
+      story: "Our journey began in May 2025 as a family-run hardware and premium plywood supplier. We quickly learned that homeowners weren't just searching for raw materials—they wanted spaces that made sense for their daily routines. They wanted kitchens where spices were at arm's reach, wardrobes that made busy mornings effortless, and living rooms where families could gather without clutter. So we took matters into our own hands. Today, we manage the entire lifecycle under one roof: drafting detailed 2D layouts, selecting fine anti-scratch acrylics at our warehouse, and deploying our local artisan carpenters to install everything with surgical precision. We stay far away from cheap materials, opting instead for BWP (boiling water proof) marine-grade plywood and soft-close German hardware because we design for real lives, not just pretty photographs.",
     });
 
     // 3. Why Choose Us
@@ -424,8 +424,8 @@ const seedData = async () => {
       logoText: 'HOME AND DECOR',
       navLinks: [
         { label: 'Home', url: '/' },
-        { label: 'About', url: '#about' },
-        { label: 'Contact', url: '#contact' },
+        { label: 'About', url: '/aboutus' },
+        { label: 'Contact', url: '/#contact' },
       ],
       footerSlogan: 'Made to Last. Designed to Impress.',
       headerContactHeading: 'Contact Info',
@@ -433,9 +433,9 @@ const seedData = async () => {
       footerLinksHeading: 'Useful links',
       copyrightText: '© Copyright NK Home and Decor',
       usefulLinks: [
-        { label: 'About', url: '/' },
+        { label: 'About', url: '/aboutus' },
         { label: 'Products', url: '/' },
-        { label: 'Contact Us', url: '/' },
+        { label: 'Contact Us', url: '/#contact' },
       ],
     });
 

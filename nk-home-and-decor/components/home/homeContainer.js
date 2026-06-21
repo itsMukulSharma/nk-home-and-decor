@@ -36,7 +36,7 @@ const HomeContainer = ({ sanityData = {} }) => {
       <LatestWork data={sanityData.gallery} />
       <Testimonials data={sanityData.testimonials} />
       <LetsConnect data={sanityData.contact} />
-      <WhatsAppWidget />
+      <WhatsAppWidget contact={sanityData.contact} />
     </>
   );
 };

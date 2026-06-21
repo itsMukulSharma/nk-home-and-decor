@@ -2,11 +2,13 @@ import React from "react";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
 
-const WhatsAppWidget = () => {
+const WhatsAppWidget = ({ contact }) => {
+  const whatsappUrl = contact?.socialLinks?.find(s => s.platform.toLowerCase() === 'whatsapp')?.url || "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...";
+
   return (
     <div className="fixed bottom-[30px] right-[30px] z-[9999]">
       <Link
-        href="https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor..."
+        href={whatsappUrl}
         target="_blank"
         className="flex items-center justify-center w-[60px] h-[60px] bg-[#25D366] text-white rounded-full shadow-lg transition-transform duration-300 hover:scale-110 hover:shadow-2xl"
       >

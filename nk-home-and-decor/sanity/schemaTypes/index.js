@@ -10,6 +10,7 @@ import { announcement } from './announcement';
 import { whyChooseUs } from './whyChooseUs';
 import { process } from './process';
 import { livspaceCalculator } from './livspaceCalculator';
+import { settings } from './settings';
 
 export const schemaTypes = [
   hero,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   whyChooseUs,
   process,
   livspaceCalculator,
+  settings,
 ];

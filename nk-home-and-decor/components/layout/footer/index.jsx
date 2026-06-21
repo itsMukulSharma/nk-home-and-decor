@@ -3,44 +3,61 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Footer = ({ data }) => {
-  const contact = [
+const Footer = ({ contact, settings }) => {
+  const contactInfo = contact?.contactDetails?.map((item, index) => {
+    const IconComponent = Icons[item.icon] || Icons.Home;
+    return {
+      id: index,
+      link: item.link || "#",
+      text: item.text,
+      Icons: <IconComponent size={20} fill="#D7AB79" />,
+    };
+  }) || [
     {
       id: 0,
-      link: data?.phone ? `tel:${data.phone}` : "tel:+918168519429",
-      text: data?.phone || "+91 81685-19429",
+      link: "tel:+918168519429",
+      text: "+91 81685-19429",
       Icons: <Icons.Phone size={20} fill="#D7AB79" />,
     },
     {
       id: 1,
-      link: data?.email ? `mailto:${data.email}` : "mailto:nkhomeanddecor@gmail.com",
-      text: data?.email || "nkhomeanddecor@gmail.com",
+      link: "mailto:nkhomeanddecor@gmail.com",
+      text: "nkhomeanddecor@gmail.com",
       Icons: <Icons.Mail size={20} fill="#D7AB79" />,
     },
     {
       id: 2,
       link: "#",
-      text: data?.address || "Gharaunda, Karnal, Haryana, 132114",
+      text: "Gharaunda, Karnal, Haryana, 132114",
       Icons: <Icons.Home size={20} fill="#D7AB79" />,
     },
   ];
 
-  const socialLinks = data?.socialLinks || [];
-  
-  const social = [
+  const social = contact?.socialLinks?.map((item, index) => {
+    const IconComponent = Icons[item.platform] || Icons.Instagram;
+    return {
+      id: index,
+      link: item.url,
+      Icons: <IconComponent size={20} fill="#ffffff" />,
+    };
+  }) || [
     {
       id: 1,
-      link: socialLinks.find(s => s.platform.toLowerCase() === 'instagram')?.url || "https://www.instagram.com/nk_home_and_decor/?hl=en",
+      link: "https://www.instagram.com/nk_home_and_decor/?hl=en",
       Icons: <Icons.Instagram size={20} fill="#ffffff" />,
     },
     {
       id: 2,
-      link: socialLinks.find(s => s.platform.toLowerCase() === 'whatsapp')?.url || "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...",
+      link: "https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...",
       Icons: <Icons.WhatsApp size={20} fill="#ffffff" />,
     },
   ];
 
-  const useFulLinks = [
+  const useFulLinks = settings?.usefulLinks?.map((link, index) => ({
+    id: index,
+    text: link.label,
+    link: link.url,
+  })) || [
     {
       id: 0,
       text: "About",
@@ -57,16 +74,20 @@ const Footer = ({ data }) => {
       link: "/",
     },
   ];
+
+  const logoText = settings?.logoText || "HOME AND DECOR";
+  const footerSlogan = settings?.footerSlogan || "Made to Last. Designed to Impress.";
+
   return (
     <footer className="relative z-[1] bg-[#101010] px-0">
       <div className="container py-[120px]">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px] gap-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
           <div className="lg:pr-[85px]">
             <h3 className="relative text-[20px] leading-[26px] text-white font-medium relative z-[1] mb-[30px] heading-line">
-              Get in touch
+              {settings?.footerContactHeading || "Get in touch"}
             </h3>
             <ul>
-              {contact?.map((item, index) => (
+              {contactInfo?.map((item, index) => (
                 <li key={index}>
                   <Link
                     href={item?.link}
@@ -82,18 +103,18 @@ const Footer = ({ data }) => {
             <div className="animate-logo flex lg:justify-center">
               <Link href="/" className="flex items-end gap-2">
                 <Image
-                  src="/images/nk_logo.png"
+                  src={settings?.logo || "/images/nk_logo.png"}
                   width={52}
                   height={52}
                   alt="navbarLogo"
                 />
                 <p className="relative text-white text-[14px] text-left font-semibold leading-[21px] tracking-widest uppercase nav-link header-text">
-                  HOME AND <br /> DECOR
+                  {logoText.split(" ").slice(0, 2).join(" ")} <br /> {logoText.split(" ").slice(2).join(" ")}
                 </p>
               </Link>
             </div>
             <p className="text-[#515151] text-[15px] leading-[30px] mt-[28px] mb-[30px]">
-              Made to Last. Designed to Impress.
+              {footerSlogan}
             </p>
             <ul className="flex gap-[20px] items-center lg:justify-center">
               {social?.map((item, index) => (
@@ -111,7 +132,7 @@ const Footer = ({ data }) => {
           </div>
           <div className="lg:pl-[85px]">
             <h3 className="relative text-[20px] leading-[26px] text-white font-medium relative z-[1] mb-[30px] heading-line">
-              Useful links
+              {settings?.footerLinksHeading || "Useful links"}
             </h3>
             <ul>
               {useFulLinks?.map((item, index) => (
@@ -131,7 +152,7 @@ const Footer = ({ data }) => {
       <div className="container">
         <div className="py-[30px] text-center border-t border-t-[#282828]">
           <p className="text-[15px] leading-[26px] text-[#999999] font-normal text-center">
-            © Copyright NK Home and Decor {new Date().getFullYear()}. All Rights Reserved.
+            {settings?.copyrightText || `© Copyright NK Home and Decor ${new Date().getFullYear()}. All Rights Reserved.`}
           </p>
         </div>
       </div>

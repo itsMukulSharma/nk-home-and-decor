@@ -65,7 +65,20 @@ export const contactQuery = `*[_type == "contact"][0]{
   address,
   phone,
   email,
+  contactDetails,
   socialLinks
+}`;
+
+export const settingsQuery = `*[_type == "settings"][0]{
+  "logo": logo.asset->url,
+  logoText,
+  navLinks,
+  footerSlogan,
+  headerContactHeading,
+  footerContactHeading,
+  footerLinksHeading,
+  copyrightText,
+  usefulLinks
 }`;
 
 export const whyChooseUsQuery = `*[_type == "whyChooseUs"][0]{
@@ -89,6 +102,7 @@ export const livspaceCalculatorQuery = `*[_type == "livspaceCalculator"][0]{
   "backgroundImage": image.asset->url,
   spaces[]{
     ...,
+    "image": image.asset->url,
     steps[]{
       ...,
       options[]{

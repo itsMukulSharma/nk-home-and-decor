@@ -166,6 +166,7 @@ const seedData = async () => {
           id: 'kitchen',
           label: 'Modular Kitchen',
           icon: 'Brush',
+          image: kitchenImg1,
           steps: [
             {
               id: 2,
@@ -204,6 +205,7 @@ const seedData = async () => {
           id: 'wardrobe',
           label: 'Master Wardrobe',
           icon: 'Home',
+          image: wardrobeImg1,
           steps: [
             {
               id: 2,
@@ -241,6 +243,7 @@ const seedData = async () => {
           id: 'tv',
           label: 'TV Unit',
           icon: 'Dashboard',
+          image: tvUnitImg1,
           steps: [
             {
               id: 2,
@@ -267,6 +270,7 @@ const seedData = async () => {
           id: 'vanity',
           label: 'Bathroom Vanity',
           icon: 'Location',
+          image: aptImg,
           steps: [
             {
               id: 2,
@@ -399,9 +403,39 @@ const seedData = async () => {
       address: 'Gharaunda, Karnal, Haryana, 132114',
       phone: '+91 81685-19429',
       email: 'nkhomeanddecor@gmail.com',
+      contactDetails: [
+        { icon: 'Phone', text: '+91 81685-19429', link: 'tel:+918168519429' },
+        { icon: 'WhatsApp', text: '+91 81685-19429', link: 'https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...' },
+        { icon: 'Mail', text: 'nkhomeanddecor@gmail.com', link: 'mailto:nkhomeanddecor@gmail.com' },
+        { icon: 'Location', text: 'Gharaunda, Karnal, Haryana, 132114', link: '#' },
+      ],
       socialLinks: [
         { platform: 'Instagram', url: 'https://www.instagram.com/nk_home_and_decor/?hl=en' },
         { platform: 'WhatsApp', url: 'https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...' },
+      ],
+    });
+
+    // 10. Site Settings
+    const logoImg = await uploadAsset('images/nk_logo.png');
+    await client.createOrReplace({
+      _id: 'settings-singleton',
+      _type: 'settings',
+      logo: logoImg,
+      logoText: 'HOME AND DECOR',
+      navLinks: [
+        { label: 'Home', url: '/' },
+        { label: 'About', url: '#about' },
+        { label: 'Contact', url: '#contact' },
+      ],
+      footerSlogan: 'Made to Last. Designed to Impress.',
+      headerContactHeading: 'Contact Info',
+      footerContactHeading: 'Get in touch',
+      footerLinksHeading: 'Useful links',
+      copyrightText: '© Copyright NK Home and Decor',
+      usefulLinks: [
+        { label: 'About', url: '/' },
+        { label: 'Products', url: '/' },
+        { label: 'Contact Us', url: '/' },
       ],
     });
 

@@ -3,7 +3,7 @@ import "./global.scss";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { client } from "@/libs/sanity";
-import { contactQuery } from "@/libs/sanityQueries";
+import { contactQuery, settingsQuery } from "@/libs/sanityQueries";
 
 export const metadata = {
   title: "NK home and decor",
@@ -14,13 +14,17 @@ export const revalidate = 60;
 
 export default async function RootLayout({ children }) {
   let contactData = null;
+  let settingsData = null;
   
   try {
     if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-      contactData = await client.fetch(contactQuery);
+      [contactData, settingsData] = await Promise.all([
+        client.fetch(contactQuery),
+        client.fetch(settingsQuery)
+      ]);
     }
   } catch (error) {
-    console.error("Error fetching contact data from Sanity:", error);
+    console.error("Error fetching layout data from Sanity:", error);
   }
 
   return (
@@ -28,9 +32,9 @@ export default async function RootLayout({ children }) {
       <body
         className={`${Montserrat.variable} antialiased`}
       >
-        <Header />
+        <Header contact={contactData} settings={settingsData} />
         <main>{children}</main>
-        <Footer data={contactData} />
+        <Footer contact={contactData} settings={settingsData} />
       </body>
     </html>
   );

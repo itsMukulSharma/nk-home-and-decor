@@ -4,8 +4,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Icons } from "@/components/icons";
 
-const Header = () => {
+const Header = ({ contact, settings }) => {
   const [isHamMenuActive, setIsHamMenuActive] = useState(false);
+
+  const navLinks = settings?.navLinks || [
+    { label: "Home", url: "/" },
+    { label: "About", url: "#about" },
+    { label: "Contact", url: "#contact" },
+  ];
+
+  const logoText = settings?.logoText || "HOME AND DECOR";
 
   return (
     <header className="w-full h-[78px] fixed top-0 left-0 z-[9999] bg-[#101010] transition-all duration-500">
@@ -14,15 +22,15 @@ const Header = () => {
           <div className="animate-logo">
             <Link href="/" className="flex items-end gap-2">
               <Image
-                src="/images/nk_logo.png"
+                src={settings?.logo || "/images/nk_logo.png"}
                 width={52}
                 height={52}
                 alt="navbarLogo"
               />
               <p className="relative text-white text-[14px] font-semibold leading-[21px] tracking-widest uppercase nav-link header-text">
-                HOME AND <br /> DECOR
+                {logoText.split(" ").slice(0, 2).join(" ")} <br /> {logoText.split(" ").slice(2).join(" ")}
                 <span className="text-[14px] font-semibold leading-[21px] uppercase tracking-widest color-text">
-                  HOME AND <br /> DECOR
+                  {logoText.split(" ").slice(0, 2).join(" ")} <br /> {logoText.split(" ").slice(2).join(" ")}
                 </span>
                 <Icons.Brush
                   size={50}
@@ -33,33 +41,16 @@ const Header = () => {
             </Link>
           </div>
           <ul className="list-none hidden lg:flex items-center gap-6">
-            <li>
-              <Link
-                href="/"
-                className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-                // ref={homeRef}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#about"
-                className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-                // ref={homeRef}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#contact"
-                className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
-                // ref={homeRef}
-              >
-                Contact
-              </Link>
-            </li>
+            {navLinks.map((link, index) => (
+              <li key={index}>
+                <Link
+                  href={link.url}
+                  className="text-white text-[17px] font-normal leading-[27px] uppercase nav-link"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
           <div className="relative flex">
             <button
@@ -90,31 +81,33 @@ const Header = () => {
           </div>
           <div className="px-[32px]">
             <h2 className="text-white text-[26px] font-semibold leading-[30px] mb-[32px]">
-              Contact Info
+              {settings?.headerContactHeading || "Contact Info"}
             </h2>
             <ul className="list-none">
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
-                <Icons.Location size={20} fill="#ffffff" /> Gharaunda, Karnal,
-                Haryana, 132114
-              </li>
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
-                <Icons.Phone size={20} fill="#ffffff" />
-                +91 8870760709
-              </li>
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
-                <Icons.WhatsApp size={20} fill="#ffffff" />
-                <Link
-                  href="https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor..."
-                  target="_blank"
-                  className="hover:text-[#D9AB7A] transition-colors"
-                >
-                  +91 81685-19429
-                </Link>
-              </li>
-              <li className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
-                <Icons.Mail size={20} fill="#ffffff" />
-                nkhomeanddecor@gmail.com
-              </li>
+              {(contact?.contactDetails || [
+                { icon: 'Location', text: 'Gharaunda, Karnal, Haryana, 132114', link: '#' },
+                { icon: 'Phone', text: '+91 81685-19429', link: 'tel:+918168519429' },
+                { icon: 'WhatsApp', text: '+91 81685-19429', link: 'https://wa.me/918168519429?text=Hi%20NK%20Home%20and%20Decor...' },
+                { icon: 'Mail', text: 'nkhomeanddecor@gmail.com', link: 'mailto:nkhomeanddecor@gmail.com' }
+              ]).map((item, index) => {
+                const IconComponent = Icons[item.icon] || Icons.Home;
+                return (
+                  <li key={index} className="flex gap-[5px] text-[14px] leading-[21px] font-normal mb-[8px]">
+                    <IconComponent size={20} fill="#ffffff" />
+                    {item.link && item.link !== '#' ? (
+                      <Link
+                        href={item.link}
+                        target={item.link.startsWith('http') ? "_blank" : "_self"}
+                        className="hover:text-[#D9AB7A] transition-colors"
+                      >
+                        {item.text}
+                      </Link>
+                    ) : (
+                      item.text
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

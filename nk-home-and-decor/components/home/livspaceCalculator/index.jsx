@@ -39,7 +39,7 @@ const DynamicCalculator = ({ data }) => {
           })),
         })),
       };
-      return { id: s.id, label: s.label, icon: s.icon };
+      return { id: s.id, label: s.label, icon: s.icon, img: s.image };
     });
 
     return { config: cfg, spaces: sps };
@@ -177,7 +177,8 @@ const DynamicCalculator = ({ data }) => {
     <section
       id="pricing-calculator"
       ref={sectionRef}
-      className="relative py-[100px] lg:py-[150px] bg-[#101010] overflow-hidden border-y border-[#212121]"
+      className="relative py-[100px] lg:py-[150px] bg-[#101010] overflow-hidden border-y border-[#212121] bg-cover bg-center"
+      style={{ backgroundImage: bgImage ? `linear-gradient(rgba(16, 16, 16, 0.95), rgba(16, 16, 16, 0.95)), url(${bgImage})` : 'none' }}
     >
       <div className="container relative z-[20]">
         <div className="relative text-center mb-[60px]" ref={headingRef}>
@@ -216,15 +217,25 @@ const DynamicCalculator = ({ data }) => {
           {step === 1 && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10">
               {spaces.map((s) => {
-                const IconComponent = Icons[s.icon] || Icons.Check;
+                // const IconComponent = Icons[s.icon] || Icons.Check;
                 return (
                   <button
                     key={s.id}
                     onClick={() => handleSpaceSelect(s)}
                     className="group relative aspect-[0.85/1] bg-[#111111] border border-[#212121] rounded-[32px] transition-all duration-500 hover:border-[#D7AB7C] hover:-translate-y-2 flex flex-col items-center justify-center gap-8 shadow-2xl px-6"
                   >
-                    <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl border-2 border-dashed border-[#222222] flex items-center justify-center text-[#D7AB7C] transition-all duration-500 group-hover:border-[#D7AB7C]/50 group-hover:bg-[#D7AB7C]/5">
-                      <IconComponent size={36} className="lg:size-[48px]" />
+                    <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl border-2 border-dashed border-[#222222] flex items-center justify-center text-[#D7AB7C] transition-all duration-500 group-hover:border-[#D7AB7C]/50 group-hover:bg-[#D7AB7C]/5 relative overflow-hidden">
+                      {/* <IconComponent size={36} className="lg:size-[48px]" /> */}
+                      {s.img ? (
+                        <Image
+                          src={s.img}
+                          alt={s.label}
+                          fill
+                          className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                        />
+                      ) : (
+                        <Icons.Check size={36} className="lg:size-[48px]" />
+                      )}
                     </div>
                     <span className="text-base lg:text-[20px] font-medium text-white group-hover:text-[#D7AB7C] transition-colors text-center leading-tight">
                       {s.label}
@@ -252,7 +263,14 @@ const DynamicCalculator = ({ data }) => {
                       className="group p-8 bg-[#161616] border border-[#282828] rounded-2xl transition-all duration-500 hover:border-[#D7AB7C] text-left flex flex-col h-full"
                     >
                       <div className="w-full aspect-[4/3] bg-[#101010] rounded-xl border-2 border-dashed border-[#212121] mb-6 flex items-center justify-center transition-colors group-hover:border-[#D7AB7C]/30 relative overflow-hidden">
-                        {opt.type === "shape" ? (
+                        {opt.img ? (
+                          <Image
+                            src={opt.img}
+                            alt={opt.label}
+                            fill
+                            className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                          />
+                        ) : opt.type === "shape" ? (
                           <div
                             className={`w-16 h-16 border-2 border-dashed border-[#282828] group-hover:border-[#D7AB7C] transition-colors rounded-sm ${
                               opt.id === "lshape"
@@ -264,13 +282,6 @@ const DynamicCalculator = ({ data }) => {
                                     : "border-b-4"
                             }`}
                           ></div>
-                        ) : opt.img ? (
-                          <Image
-                            src={opt.img}
-                            alt={opt.label}
-                            fill
-                            className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-                          />
                         ) : (
                           <Icons.Check
                             size={30}
